@@ -1,0 +1,478 @@
+{
+	"info": {
+		"_postman_id": "4893939d-d87e-4d0b-ab21-e50ea48b2cd4",
+		"name": "Evol",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Logeo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var responseBody = pm.response.json();\r",
+							"var token = responseBody.data.token;\r",
+							"\r",
+							"pm.environment.set(\"authToken\", token);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "login",
+							"value": "marcosbr",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "default"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8091/usuario/logeo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"usuario",
+						"logeo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TipoCambio - Procesar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var responseBody = pm.response.json();\r",
+							"var token = responseBody.data.token;\r",
+							"\r",
+							"pm.environment.set(\"authToken\", token);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "monto",
+							"value": "100",
+							"type": "default"
+						},
+						{
+							"key": "monedaOrigenId",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "monedaDestinoId",
+							"value": "2",
+							"type": "default"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8091/tipoCambio/procesarTipoDeCambio",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"tipoCambio",
+						"procesarTipoDeCambio"
+					],
+					"query": [
+						{
+							"key": "monto",
+							"value": "100",
+							"disabled": true
+						},
+						{
+							"key": "monedaOrigenId",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "monedaDestinoId",
+							"value": "2",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Usuario - Listar todos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/usuario/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"usuario",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Usuario - Obtener",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/usuario/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"usuario",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Usuario - Crear",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"login\": \"usuario_prueba\",\r\n    \"password\": \"111111\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8091/usuario/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"usuario",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Usuario - Crear Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"login\": \"usuario_prueba\",\r\n    \"password\": \"111111\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8091/usuario/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"usuario",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Usuario - Actualizar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"login\": \"usuario_prueba\",\r\n    \"password\": \"111111\"\r\n}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8091/usuario/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"usuario",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Usuario - Eliminar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/usuario/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"usuario",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Moneda - Listar todos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/tipoCambio/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"tipoCambio",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Moneda - Obtener",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/moneda/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"moneda",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TipoCambio - Listar todos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/moneda/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"moneda",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TipoCambio - Obtener",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/tipoCambio/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"tipoCambio",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
